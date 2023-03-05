@@ -113,7 +113,7 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x40a
+.text           0x00000000      0x6c4
  *(.vectors)
  .vectors       0x00000000       0x54 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -191,20 +191,26 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text          0x0000006c        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                 0x0000006c                . = ALIGN (0x2)
  *(.text.*)
- .text.SetPinDirection
-                0x0000006c      0x1c8 ./DIO_program.o
-                0x0000006c                SetPinDirection
- .text.SetPinValue
-                0x00000234      0x1c8 ./DIO_program.o
-                0x00000234                SetPinValue
- .text.main     0x000003fc        0xa ./main.o
-                0x000003fc                main
- .text.libgcc   0x00000406        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000406                . = ALIGN (0x2)
+ .text.DIO_SetPinDirection
+                0x0000006c      0x1c6 ./DIO_program.o
+                0x0000006c                DIO_SetPinDirection
+ .text.DIO_SetPinValue
+                0x00000232      0x1c6 ./DIO_program.o
+                0x00000232                DIO_SetPinValue
+ .text.DIO_GetPinValue
+                0x000003f8      0x108 ./DIO_program.o
+                0x000003f8                DIO_GetPinValue
+ .text.DIO_TogglePinValue
+                0x00000500       0xfa ./DIO_program.o
+                0x00000500                DIO_TogglePinValue
+ .text.main     0x000005fa       0xc6 ./main.o
+                0x000005fa                main
+ .text.libgcc   0x000006c0        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000006c0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000406        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000406                exit
-                0x00000406                _exit
+ .fini9         0x000006c0        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000006c0                exit
+                0x000006c0                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -223,11 +229,11 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000406        0x4 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000006c0        0x4 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000040a                _etext = .
+                0x000006c4                _etext = .
 
-.data           0x00800060        0x0 load address 0x0000040a
+.data           0x00800060        0x0 load address 0x000006c4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -252,8 +258,8 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.bss*)
  *(COMMON)
                 0x00800060                PROVIDE (__bss_end, .)
-                0x0000040a                __data_load_start = LOADADDR (.data)
-                0x0000040a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000006c4                __data_load_start = LOADADDR (.data)
+                0x000006c4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800060        0x0
                 0x00800060                PROVIDE (__noinit_start, .)
@@ -278,15 +284,15 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000      0x5e8
+.stab           0x00000000      0x600
  *(.stab)
- .stab          0x00000000      0x4f8 ./DIO_program.o
- .stab          0x000004f8       0xf0 ./main.o
-                                 0xfc (size before relaxing)
+ .stab          0x00000000      0x408 ./DIO_program.o
+ .stab          0x00000408      0x1f8 ./main.o
+                                0x258 (size before relaxing)
 
-.stabstr        0x00000000      0x7b2
+.stabstr        0x00000000      0x384
  *(.stabstr)
- .stabstr       0x00000000      0x7b2 ./DIO_program.o
+ .stabstr       0x00000000      0x384 ./DIO_program.o
 
 .stab.excl
  *(.stab.excl)
@@ -342,5 +348,5 @@ LOAD d:/sdk_win_64/sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 
 .debug_macinfo
  *(.debug_macinfo)
-OUTPUT(DIO_DRIVER.elf elf32-avr)
+OUTPUT(DIO_driver_test.elf elf32-avr)
 LOAD linker stubs

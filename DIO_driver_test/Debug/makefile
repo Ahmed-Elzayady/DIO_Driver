@@ -30,47 +30,47 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-DIO_DRIVER.lss \
+DIO_driver_test.lss \
 
 FLASH_IMAGE += \
-DIO_DRIVER.hex \
+DIO_driver_test.hex \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: DIO_DRIVER.elf secondary-outputs
+all: DIO_driver_test.elf secondary-outputs
 
 # Tool invocations
-DIO_DRIVER.elf: $(OBJS) $(USER_OBJS)
+DIO_driver_test.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,DIO_DRIVER.map -mmcu=atmega32 -o "DIO_DRIVER.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,DIO_driver_test.map -mmcu=atmega32 -o "DIO_driver_test.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-DIO_DRIVER.lss: DIO_DRIVER.elf
+DIO_driver_test.lss: DIO_driver_test.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S DIO_DRIVER.elf  >"DIO_DRIVER.lss"
+	-avr-objdump -h -S DIO_driver_test.elf  >"DIO_driver_test.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-DIO_DRIVER.hex: DIO_DRIVER.elf
+DIO_driver_test.hex: DIO_driver_test.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex DIO_DRIVER.elf  "DIO_DRIVER.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex DIO_driver_test.elf  "DIO_driver_test.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: DIO_DRIVER.elf
+sizedummy: DIO_driver_test.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 DIO_DRIVER.elf
+	-avr-size --format=avr --mcu=atmega32 DIO_driver_test.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) DIO_DRIVER.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) DIO_driver_test.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
